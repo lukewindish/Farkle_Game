@@ -1,2 +1,3 @@
-# cs403_21-2_K2-proj
-Project work for Section K-2
+Repository for CS403 K2 in Term 21-2
+
+Fork this to create your own repository for project work. Good luck!
