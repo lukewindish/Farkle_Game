@@ -1,8 +1,8 @@
-#Farkle
+# Farkle
 
-##Object
+## Object
 ###### The player who reaches 10,000 points first wins
-##How to Play
+## How to Play
 Each player takes turns rolling the dice. When its your turn, you roll all six dice at the same time. Points are earned every time you roll a 1 or 5, three of a kind, three pairs, a six-dice straight (1,2,3,4,5,6), or two triplets.
 
 If none of your dice earned points, thats a 'Farkle!'
