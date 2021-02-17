@@ -9,7 +9,6 @@ class Die {
     //value = 1 + r.nextInt(5)
     value
   }
-  
   def show: String = {
     value match {
       case 1 => "|   -----------    |\n" +
