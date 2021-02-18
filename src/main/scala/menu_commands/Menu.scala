@@ -1,7 +1,8 @@
 package menu_commands
 
+
 object Menu {
-  
+
   def showGameArea : String = {
     Board.show
   }

@@ -1,5 +1,6 @@
 package menu_commands
 
+
 object PlayerOrder extends scala.collection.mutable.Queue[Player] {
 
   this += new Player("Player_1")
@@ -13,7 +14,7 @@ object PlayerOrder extends scala.collection.mutable.Queue[Player] {
   }
 
   def show : String = {
-    var current_order = ""    
+    var current_order = ""
     for (p <- this.toList) {
       current_order = current_order.concat(p.name +  ", ")
     }

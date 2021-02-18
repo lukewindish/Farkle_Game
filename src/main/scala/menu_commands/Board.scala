@@ -1,16 +1,17 @@
 package menu_commands
 
+
 object Board {
-  
+
   def show : String = {
-    
+
     var dice = Array.ofDim[Die](6)
     for (i <- 0 until 6) dice(i) = new Die
-    
+
     var winner = ""
     var game_over = false
     var winning_score = 0
-    
+
     var result = "Board:\n"
     result += "____________________\n"
     for (d <- dice) {
