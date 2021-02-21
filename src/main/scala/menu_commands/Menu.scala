@@ -14,4 +14,7 @@ object Menu {
   def advancePlayerOrder : String = {
     PlayerOrder.advance
  }
+  def doMove : Unit = {
+    
+  }
 }

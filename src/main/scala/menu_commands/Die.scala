@@ -8,6 +8,7 @@ class Die {
 
   def roll: Int = {
     //value = 1 + r.nextInt(5)
+    value = 2
     value
   }
   def show: String = {
