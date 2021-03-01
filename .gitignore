@@ -7,3 +7,4 @@ target
 project
 .bsp
 .project
+build.sbt
