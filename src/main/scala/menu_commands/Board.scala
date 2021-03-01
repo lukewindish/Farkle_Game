@@ -2,15 +2,15 @@ package menu_commands
 
 
 object Board {
-  
+
    var dice = Array.ofDim[Die](6)
    for (i <- 0 until 6) dice(i) = new Die
-   
-   def roll(numDie: Int): Unit = {
+
+   protected def roll(numDie: Int): Unit = {
      for (i <- 0 until numDie) dice(i).roll
    }
-   
-   def calculate_score(numDie: Int): Int = {
+
+   protected def calculate_score(numDie: Int): Int = {
      var values = List[Int]()
      var numPairs = 0
      var score = 0
@@ -69,7 +69,7 @@ object Board {
      score += scoreFives
      score
    }
-    
+
 
   def show : String = {
 
