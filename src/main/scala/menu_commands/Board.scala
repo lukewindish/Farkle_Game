@@ -1,15 +1,28 @@
 package menu_commands
 
 
+/** Board displays player's dice and scores
+ * 
+ */
 object Board {
 
    var dice = Array.ofDim[Die](6)
    for (i <- 0 until 6) dice(i) = new Die
 
+   /** Funciton takes a number of dice and rolls each one
+    *  
+    *  @param numDie Number of dice to roll
+    */
    protected def roll(numDie: Int): Unit = {
      for (i <- 0 until numDie) dice(i).roll
    }
-
+   
+   
+   /** Funciton takes a number of dice and totals up the score that arrangement of dice makes
+    *  
+    *  @param numDie Number of dice in the array to score
+    *  @return Integer for the score calculated
+    */
    protected def calculate_score(numDie: Int): Int = {
      var values = List[Int]()
      var numPairs = 0
@@ -70,7 +83,11 @@ object Board {
      score
    }
 
-
+   /** Shows game board with dice and player scores
+    * 
+    * @return A string that represents the game area
+    * 
+    */
   def show : String = {
 
     //var dice = Array.ofDim[Die](6)
@@ -90,11 +107,11 @@ object Board {
               "Scores:\n"
     for (p <- PlayerOrder.toArray) {
       result += p.name + " = "
-      result += p.score.toString + "\n"
+      result += p.getScore.toString + "\n"
       if (p.isWinner) {
         game_over = true
         winner += p.name
-        winning_score = p.score
+        winning_score = p.getScore
       }
     }
     result += "\n"

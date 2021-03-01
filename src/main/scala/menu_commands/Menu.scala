@@ -17,4 +17,10 @@ object Menu {
   def doMove : Unit = {
     
   }
+  
+  def INITIALIZE_GAME: Unit = {}
+  def CHECK_FOR_WINNER: Unit = {}
+  def DO_MOVE: Unit = {}
+  def DO_TURN: Unit = {}
+  def DO_GAME: Unit = {}
 }
