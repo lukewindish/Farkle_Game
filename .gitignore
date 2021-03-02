@@ -6,8 +6,6 @@ target/streams
 target/task-temp-directory
 target/.history3
 target/scala-2.12/update
-target/scala-2.12/api/menu_commands
-target/scala-2.12/api/lib
 .cache*
 .classpath
 project
