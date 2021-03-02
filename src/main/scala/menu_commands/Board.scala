@@ -117,7 +117,7 @@ object Board {
     result += "\n"
     if (game_over) {
       result += "The winner is " + winner
-      result += " with a score of" + winning_score.toString
+      result += " with a score of" + winning_score.toString + "\n"
     }
     result
   }
