@@ -4,7 +4,7 @@
 		module="farkle$sources_javadoc"
 		revision="0.0.1"
 		status="integration"
-		publication="20210301213901"
+		publication="20210302201018"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>
