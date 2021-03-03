@@ -6,4 +6,11 @@ target/
 .classpath
 .bsp
 .project
+
+!target/
+
+target/*
+!target/scala-2.12
+
+target/scala-2.12/*
 !target/scala-2.12/api
