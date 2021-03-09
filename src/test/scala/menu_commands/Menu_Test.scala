@@ -181,7 +181,7 @@ class Menu_Test extends FunSpec with Matchers {
             "Player_3 = 0\n" +
             "Player_4 = 0\n" +
             "\n"
-        
+        Menu.INITIALIZE_GAME
         Menu.DO_MOVE
         Menu.showGameArea should be (expectedResult1)
         
