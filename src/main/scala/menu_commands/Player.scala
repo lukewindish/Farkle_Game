@@ -8,7 +8,7 @@ package menu_commands
  */
 class Player(val name: String) {
   private var score = 0
-  var isWinner = false
+  var strategy = new Strategy
 
   /** Updates player's score after their turn has ended
    *  
@@ -17,20 +17,16 @@ class Player(val name: String) {
   def addScore(num: Int): Unit = {
     score += num
   }
+  def resetScore: Unit = {
+    score = 0
+  }
 
   /** Since score is private, allows other classes to check player's score */
   def getScore : Int = {
     score
   }
-  /** Checks if the player has enough points to win the game
-   *  
-   *  If any player reaches a score of 10,000, they win the game
-   *
-   */
-  def checkWinner: Boolean = {
-    if (score >= 10000) {
-      isWinner = true
-    }
-    isWinner
+  
+  def setStrategy(s: Strategy): Unit = {
+    strategy = s
   }
 }

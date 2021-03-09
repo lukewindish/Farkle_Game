@@ -16,14 +16,18 @@ object Board {
    protected def roll(numDie: Int): Unit = {
      for (i <- 0 until numDie) dice(i).roll
    }
+   def testRoll: Unit = {
+     for (i <- 0 until 3) dice(i).roll
+   }
    
    
    /** Funciton takes a number of dice and totals up the score that arrangement of dice makes
     *  
     *  @param numDie Number of dice in the array to score
-    *  @return Integer for the score calculated
+    *  @return Integer for the score calculated and Integer for dice that provided the score
     */
-   protected def calculate_score(numDie: Int): Int = {
+   def calculateScore(numDie: Int): (Int,Int) = {
+     var scoringDice = 0
      var values = List[Int]()
      var numPairs = 0
      var score = 0
@@ -37,50 +41,64 @@ object Board {
      if (numDie == 6) {
        //checks if player rolled 1,2,3,4,5,6
        if (values.sorted == (1 to 6).toList) {
-         if(score < 1000) return 1000
+         if(score < 1000) return (1000,6)
        }
        for (i <- 1 to 6) {
          if (values.count(_ == i) == 2) numPairs += 1
        }
        if (numPairs == 3) {
-         if (score < 750) return 750
+         if (score < 750) return (750,6)
        }
      }
      for (i <- 1 to numDie) {
        if (values.count(_ == i) == 6) {
-         if (score < 3000) score += 3000
+         return (3000,6)
        }
        else if (values.count(_ == i) == 5) {
-         if (score < 2000) score += 2000
+         if (score < 2000) {
+           score += 2000
+           scoringDice += 5
+         }
        }
        else if (values.count(_ == i) == 4) {
-         if (score < 1000 && numPairs == 1) return 1500
-         else score += 1000
+         if (score < 1000 && numPairs == 1) return (1500,6)
+         else {
+           score += 1000
+           scoringDice += 4
+         }
        }
        else if (values.count(_ == i) == 3) {
          if (i == 1) {
            score += 1000
+           scoringDice += 3
          }
          if (i == 2) {
            score += 200
+           scoringDice += 3
          }
          if (i == 3) {
            score += 300
+           scoringDice += 3
          }
          if (i == 4) {
            score += 400
+           scoringDice += 3
          }
          if (i == 5) {
            score += 500
+           scoringDice += 3
          }
          if (i == 6) {
            score += 600
+           scoringDice += 3
          }
        }
      }
      score += scoreOnes
+     scoringDice += numOnes
      score += scoreFives
-     score
+     scoringDice += numFives
+     (score,scoringDice)
    }
 
    /** Shows game board with dice and player scores
@@ -108,11 +126,6 @@ object Board {
     for (p <- PlayerOrder.toArray) {
       result += p.name + " = "
       result += p.getScore.toString + "\n"
-      if (p.isWinner) {
-        game_over = true
-        winner += p.name
-        winning_score = p.getScore
-      }
     }
     result += "\n"
     if (game_over) {

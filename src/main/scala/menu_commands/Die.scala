@@ -15,7 +15,8 @@ class Die {
    */
   def roll: Int = {
     //value = 1 + r.nextInt(5)
-    value = 2
+    value += 1
+    value = value % 6
     value
   }
   /**Shows string representation of a die

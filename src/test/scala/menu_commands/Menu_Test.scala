@@ -133,7 +133,8 @@ class Menu_Test extends FunSpec with Matchers {
             "Player_4 = 0\n" +
             "\n"
             
-         Menu.INITIALIZE_GAME should be (expectedResult)
+         Menu.INITIALIZE_GAME
+         Menu.showGameArea should be (expectedResult)
       }
      
      // Do Move tests
@@ -181,7 +182,8 @@ class Menu_Test extends FunSpec with Matchers {
             "Player_4 = 0\n" +
             "\n"
         
-        Menu.DO_MOVE should be (expectedResult1)
+        Menu.DO_MOVE
+        Menu.showGameArea should be (expectedResult1)
         
         val expectedResult2 =
             "Board:\n" +
