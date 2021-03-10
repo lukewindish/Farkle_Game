@@ -31,4 +31,17 @@ object PlayerOrder extends scala.collection.mutable.Queue[Player] {
   def current : Player = {
     return this.head
   }
+  
+  /** Resets the player order to Player_1, Player_2, Player_3, Player_4 */
+  def resetOrder : Unit = {
+    while(this.tail.nonEmpty){
+      this.dequeue
+    }
+    this.dequeue
+    
+    this += new Player("Player_1")
+    this += new Player("Player_2")
+    this += new Player("Player_3")
+    this += new Player("Player_4")    
+  }
 }
