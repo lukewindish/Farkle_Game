@@ -47,6 +47,7 @@ object Menu {
       keepRolling = playerStrategy.rollAgain(points,diceLeft)
     }
     playerUp.addScore(points)
+    Menu.advancePlayerOrder
   }
   /** Executes a move for each player in the player order unless a winner is declared */
   def DO_TURN: Unit = {}
