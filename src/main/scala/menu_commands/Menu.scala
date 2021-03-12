@@ -17,7 +17,14 @@ object Menu {
     PlayerOrder.advance
  }
   /** Initializes the game board and resets player's scores */
-  def INITIALIZE_GAME: Unit = {}
+  def INITIALIZE_GAME: String = {
+    Board.resetDie
+    for (p <- PlayerOrder.toArray){
+      p.resetScore
+    } 
+    PlayerOrder.resetOrder
+    Board.show
+  }
   
   /** Checks if any player has a score over 10000, returns a boolean */
   def CHECK_FOR_WINNER: Boolean = {true}
