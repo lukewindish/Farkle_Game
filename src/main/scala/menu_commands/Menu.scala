@@ -43,8 +43,7 @@ object Menu {
     points += firstRoll._1
     diceLeft = diceLeft - firstRoll._2
 
-    var keepRolling = true
-    keepRolling = playerStrategy.rollAgain(points,diceLeft)
+    var keepRolling = playerStrategy.rollAgain(points,diceLeft)
 
     while (keepRolling && diceLeft > 0) {
       Board.testRoll
@@ -55,13 +54,22 @@ object Menu {
     }
 
     playerUp.addScore(points)
+    /**Menu.CHECK_FOR_WINNER**/
     Menu.advancePlayerOrder
   }
   /** Executes a move for each player in the player order unless a winner is declared */
-  def DO_TURN: Unit = {}
+  def DO_TURN: Unit = {
+    /**for (i <- PlayerOrder.toArray){
+      Menu.DO_MOVE
+    }**/
+  }
 
   /** Executes through player moves until a player has a score over 10000 */
-  def DO_GAME: Unit = {}
+  def DO_GAME: Unit = {
+    while (Menu.CHECK_FOR_WINNER == false) {
+      /**Menu.DO_TURN**/
+    }
+  }
 
   /** Sets a strategy to the designated player
    *
