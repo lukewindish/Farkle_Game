@@ -24,7 +24,6 @@ class Die {
       value += 1
       if (value == 7) {
         value = 1
-        current_roll = 0
       }
       return value
     }
