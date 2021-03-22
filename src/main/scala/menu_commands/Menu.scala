@@ -27,7 +27,12 @@ object Menu {
   }
 
   /** Checks if any player has a score over 10000, returns a boolean */
-  def CHECK_FOR_WINNER: Boolean = {true}
+  def CHECK_FOR_WINNER: Boolean = {
+    for (i <- PlayerOrder.toArray) {
+      if (i.getScore >= 10000) return true
+    }
+    false
+  }
 
   /** Has player on top of player order execute their turn */
   def DO_MOVE: Unit = {
@@ -54,20 +59,21 @@ object Menu {
     }
 
     playerUp.addScore(points)
-    /**Menu.CHECK_FOR_WINNER**/
     Menu.advancePlayerOrder
   }
   /** Executes a move for each player in the player order unless a winner is declared */
   def DO_TURN: Unit = {
-    /**for (i <- PlayerOrder.toArray){
-      Menu.DO_MOVE
-    }**/
+    for (i <- PlayerOrder.toArray){
+      if (Menu.CHECK_FOR_WINNER == false) {
+        Menu.DO_MOVE
+      }
+    }
   }
 
   /** Executes through player moves until a player has a score over 10000 */
   def DO_GAME: Unit = {
     while (Menu.CHECK_FOR_WINNER == false) {
-      /**Menu.DO_TURN**/
+      Menu.DO_MOVE
     }
   }
 

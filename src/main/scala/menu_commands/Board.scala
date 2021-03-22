@@ -1,6 +1,5 @@
 package menu_commands
 
-
 /** Board displays player's dice and scores
  * 
  */
@@ -131,7 +130,8 @@ object Board {
     result += "|__________________|\n"
     result += "\n" +
               "Scores:\n"
-    for (p <- PlayerOrder.toArray) {
+    val players = PlayerOrder.toList.sortWith(_.name < _.name)
+    for (p <- players) {
       result += p.name + " = "
       result += p.getScore.toString + "\n"
     }
