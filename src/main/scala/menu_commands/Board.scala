@@ -119,7 +119,7 @@ object Board {
     //for (i <- 0 until 6) dice(i) = new Die
 
     var winner = ""
-    var game_over = false
+    var game_over = Menu.CHECK_FOR_WINNER
     var winning_score = 0
 
     var result = "Board:\n"
@@ -135,11 +135,17 @@ object Board {
       result += p.name + " = "
       result += p.getScore.toString + "\n"
     }
-    result += "\n"
     if (game_over) {
+      for (p <- players) {
+        if (p.getScore >= 10000) {
+          winning_score = p.getScore
+          winner = p.name
+        }
+      }
       result += "The winner is " + winner
-      result += " with a score of" + winning_score.toString + "\n"
+      result += " with a score of " + winning_score.toString + "\n"
     }
+    result += "\n"
     result
   }
 }
