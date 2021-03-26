@@ -688,7 +688,7 @@ class Menu_Test extends FunSpec with Matchers {
         Menu.advancePlayerOrder
         
         val p4 = PlayerOrder.current
-        val strat4 = new AtLeast500
+        val strat4 = new AllOrNothing
         Menu.setPlayerStrategy(p4,strat4)
         Menu.advancePlayerOrder
         
