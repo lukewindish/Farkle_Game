@@ -8,27 +8,28 @@ class View extends MainFrame {
 
     var _controller : Option[Controller] = None
     
-    object initializeGameButton extends Button("Initialize Game")
-    object doMoveButton extends Button("Do Move")
-    object doTurnButton extends Button("Do Turn")
-    object doGameButton extends Button("Do Game")
-    object checkForWinnerButton extends Button("Check For Winner")
-    object advancePlayerOrderButton extends Button("Advance Player Order")
+    object initializeGameButton extends Button
+    object doMoveButton extends Button
+    object doTurnButton extends Button
+    object doGameButton extends Button
+    object checkForWinnerButton extends Button
+    object advancePlayerOrderButton extends Button
         
-    object strategyPullDown1 extends ComboBox(Seq("Play Safe", "Two Rolls", "Ata Least 500", " All or Nothing")) {
+    object strategyPullDown1 extends ComboBox(Seq("Play Safe", "Two Rolls", "At Least 500", " All or Nothing")) {
       this.maximumSize = new Dimension(100,20)
     }
-    object strategyPullDown2 extends ComboBox(Seq("Play Safe", "Two Rolls", "Ata Least 500", " All or Nothing")) {
+    object strategyPullDown2 extends ComboBox(Seq("Play Safe", "Two Rolls", "At Least 500", " All or Nothing")) {
       this.maximumSize = new Dimension(100,20)
     }
-    object strategyPullDown3 extends ComboBox(Seq("Play Safe", "Two Rolls", "Ata Least 500", " All or Nothing")) {
+    object strategyPullDown3 extends ComboBox(Seq("Play Safe", "Two Rolls", "At Least 500", " All or Nothing")) {
       this.maximumSize = new Dimension(100,20)
     }
-    object strategyPullDown4 extends ComboBox(Seq("Play Safe", "Two Rolls", "Ata Least 500", " All or Nothing")) {
+    object strategyPullDown4 extends ComboBox(Seq("Play Safe", "Two Rolls", "At Least 500", " All or Nothing")) {
       this.maximumSize = new Dimension(100,20)
     }
     
     object northArea extends TextArea {
+      this.background = Color.LIGHT_GRAY
       this.text = ""
     }
     
