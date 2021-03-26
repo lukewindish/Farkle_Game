@@ -650,6 +650,229 @@ class Menu_Test extends FunSpec with Matchers {
         Menu.DO_GAME
         Menu.CHECK_FOR_WINNER should be (true)
       }
+      // Set Player Strategy Tests
+      it ("Can set the strategy for each player") {
+        Menu.INITIALIZE_GAME
+        val p1 = PlayerOrder.current
+        val strat = new PlaySafe
+        Menu.setPlayerStrategy(p1,strat)
+        val expectedResult = "PlaySafe"
+        p1.strategy.name should be (expectedResult)
+      }
+      
+      //Show Strategies
+      it ("Can show player availalbe strategies") {
+        var expectedResult = "PlaySafe: One roll and you are done\n"
+        expectedResult += "TwoRolls: Unless you score will all dice on the first roll, you will roll one more time\n"
+        expectedResult += "AtLeast500: Roll until you have 500 points for that turn\n"
+        expectedResult += "AllOrNothing: Roll until all dice have scored\n"
+        Menu.showStrategies should be (expectedResult)
+      }
+      
+      //Do Move (With Strategies)
+      it ("Can do moves with player's new strategies") {
+        Menu.INITIALIZE_GAME
+        val p1 = PlayerOrder.current
+        val strat = new PlaySafe
+        Menu.setPlayerStrategy(p1,strat)
+        Menu.advancePlayerOrder
+        
+        val p2 = PlayerOrder.current
+        val strat2 = new TwoRolls
+        Menu.setPlayerStrategy(p2,strat2)
+        Menu.advancePlayerOrder
+        
+        val p3 = PlayerOrder.current
+        val strat3 = new AtLeast500
+        Menu.setPlayerStrategy(p3,strat3)
+        Menu.advancePlayerOrder
+        
+        val p4 = PlayerOrder.current
+        val strat4 = new AtLeast500
+        Menu.setPlayerStrategy(p4,strat4)
+        Menu.advancePlayerOrder
+        
+        val expectedResult1 =
+            "Board:\n" +
+            "____________________\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|__________________|\n" +
+            "\n" +
+            "Scores:\n" +
+            "Player_1 = 3000\n" +
+            "Player_2 = 0\n" +
+            "Player_3 = 0\n" +
+            "Player_4 = 0\n" +
+            "\n"
+            
+        Menu.DO_MOVE
+        Menu.showGameArea should be (expectedResult1)
+        
+        val expectedResult2 =
+            "Board:\n" +
+            "____________________\n" +
+            "|   -----------    |\n" +
+            "|   | *       |    |\n" +
+            "|   |         |    |\n" +
+            "|   |       * |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   | *       |    |\n" +
+            "|   |         |    |\n" +
+            "|   |       * |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   | *       |    |\n" +
+            "|   |         |    |\n" +
+            "|   |       * |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|__________________|\n" +
+            "\n" +
+            "Scores:\n" +
+            "Player_1 = 3000\n" +
+            "Player_2 = 1200\n" +
+            "Player_3 = 0\n" +
+            "Player_4 = 0\n" +
+            "\n"
+        
+        Menu.DO_MOVE
+        Menu.showGameArea should be (expectedResult2)
+        
+        val expectedResult3 =
+            "Board:\n" +
+            "____________________\n" +
+            "|   -----------    |\n" +
+            "|   | *       |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |       * |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   | *       |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |       * |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   | *       |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |       * |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|__________________|\n" +
+            "\n" +
+            "Scores:\n" +
+            "Player_1 = 3000\n" +
+            "Player_2 = 1200\n" +
+            "Player_3 = 1300\n" +
+            "Player_4 = 0\n" +
+            "\n"
+        
+        Menu.DO_MOVE
+        Menu.showGameArea should be (expectedResult3)
+        
+         val expectedResult4 =
+            "Board:\n" +
+            "____________________\n" +
+            "|   -----------    |\n" +
+            "|   | *     * |    |\n" +
+            "|   |         |    |\n" +
+            "|   | *     * |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   | *     * |    |\n" +
+            "|   |         |    |\n" +
+            "|   | *     * |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   | *     * |    |\n" +
+            "|   |         |    |\n" +
+            "|   | *     * |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|   -----------    |\n" +
+            "|   |         |    |\n" +
+            "|   |    *    |    |\n" +
+            "|   |         |    |\n" +
+            "|   -----------    |\n" +
+            "|__________________|\n" +
+            "\n" +
+            "Scores:\n" +
+            "Player_1 = 3000\n" +
+            "Player_2 = 1200\n" +
+            "Player_3 = 1300\n" +
+            "Player_4 = 1400\n" +
+            "\n"
+            
+        Menu.DO_MOVE
+        Menu.showGameArea should be (expectedResult4)
+        
+      }
     }
   }
 }

@@ -36,6 +36,4 @@ class Model {
   def showPlayerOrder = {
     Menu.showPlayerOrder
   }
-  
-  
 }

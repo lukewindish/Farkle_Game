@@ -39,6 +39,7 @@ class Controller(view: View, model: Model) {
     if (!(model.checkForWinner)) {
       view.centralArea.text += "There is NOT a winner!"
     }
+  
 
   }
   
@@ -47,8 +48,8 @@ class Controller(view: View, model: Model) {
     view.northArea.text = "Player Order: " + model.showPlayerOrder
   }
   
-  def showPlayerOrder = Action("Show Player Order") {
-    model.showPlayerOrder
+  def showPlayerOrderClick = Action("Show Player Order") {
+    view.northArea.text = "Player Order: " + model.showPlayerOrder
   }
 
   def exit = Action("Exit") {

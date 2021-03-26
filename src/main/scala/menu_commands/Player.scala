@@ -25,7 +25,7 @@ class Player(val name: String) {
   def getScore : Int = {
     score
   }
-  
+  def getStrategy: Strategy = strategy
   def setStrategy(s: Strategy): Unit = {
     strategy = s
   }

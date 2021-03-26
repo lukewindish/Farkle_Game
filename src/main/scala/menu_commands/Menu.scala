@@ -88,4 +88,6 @@ object Menu {
   def showStrategies: String = {
     return "fail"
   }
+  
+  def setPlayerStrategy(p: Player, s: Strategy): Unit = {}
 }

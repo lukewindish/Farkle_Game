@@ -14,6 +14,7 @@ class View extends MainFrame {
     object doGameButton extends Button
     object checkForWinnerButton extends Button
     object advancePlayerOrderButton extends Button
+    object showPlayerOrderButton extends Button
         
     object strategyPullDown1 extends ComboBox(Seq("Play Safe", "Two Rolls", "At Least 500", " All or Nothing")) {
       this.maximumSize = new Dimension(100,20)
@@ -51,6 +52,7 @@ class View extends MainFrame {
     
     object southArea extends FlowPanel {
       contents += advancePlayerOrderButton
+      contents += showPlayerOrderButton
     }
     
     
@@ -80,6 +82,7 @@ class View extends MainFrame {
       doGameButton.action  = controller.doGameClick
       checkForWinnerButton.action  = controller.checkForWinnerClick
       advancePlayerOrderButton.action  = controller.advancePlayerOrderClick
+      showPlayerOrderButton.action = controller.showPlayerOrderClick
   
       
   
