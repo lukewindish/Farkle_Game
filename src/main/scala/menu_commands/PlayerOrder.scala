@@ -18,6 +18,7 @@ object PlayerOrder extends scala.collection.mutable.Queue[Player] {
     this.show
   }
 
+  
   /**Represents queue order in a string with player's names */
   def show : String = {
     var current_order = ""
@@ -26,11 +27,13 @@ object PlayerOrder extends scala.collection.mutable.Queue[Player] {
     }
     return current_order.substring(0, current_order.length-2)
   }
+  
  
   /** Returns player object of the top player in the queue */
   def current : Player = {
     return this.head
   }
+  
   
   /** Resets the player order to Player_1, Player_2, Player_3, Player_4 */
   def resetOrder : Unit = {

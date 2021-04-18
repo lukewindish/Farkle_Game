@@ -6,15 +6,21 @@ class Strategy {
   var scoreSoFar = 0
   var rollsSoFar = 0
   
-  
+  /** Function implements strategy logic 
+   *  
+   *  @param pointsSoFar Points player has scored during current move
+   *  @param diceLeft How many dice player has left to roll
+   *  @return Boolean for whether or not player should roll again 
+   *  
+   */
   def rollAgain(pointsSoFar:Int,diceLeft:Int): Boolean = {
     false
   }
-  
+  /** Function to update scoreSoFar for strategy logic */
   def updateScore(i:Int): Unit = {
-    scoreSoFar += i
+    scoreSoFar = i
   }
-  
+  /** Function to update rollsSoFar for strategy logic */
   def updateRolls(i:Int): Unit = {
     rollsSoFar += i
   }

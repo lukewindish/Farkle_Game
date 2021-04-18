@@ -8,15 +8,12 @@ object Board {
    var dice = Array.ofDim[Die](6)
    for (i <- 0 until 6) dice(i) = new Die
 
-   /** Function resets the die to initialized version of the game
-    * 
-    * 
-    */
+   /** Function resets the die to initialized version of the game @*/
    def resetDie : Unit = {
      for (i <- 0 until 6) dice(i) = new Die
    }
    
-   /** Funciton takes a number of dice and rolls each one
+   /** Function takes a number of dice and rolls each one
     *  
     *  @param numDie Number of dice to roll
     */

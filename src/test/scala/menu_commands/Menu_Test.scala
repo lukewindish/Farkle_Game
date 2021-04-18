@@ -655,7 +655,7 @@ class Menu_Test extends FunSpec with Matchers {
         Menu.INITIALIZE_GAME
         val p1 = PlayerOrder.current
         val strat = new PlaySafe
-        Menu.setPlayerStrategy(p1,strat)
+        Menu.setPlayerStrategy(p1.name,strat)
         val expectedResult = "PlaySafe"
         p1.strategy.name should be (expectedResult)
       }
@@ -674,22 +674,22 @@ class Menu_Test extends FunSpec with Matchers {
         Menu.INITIALIZE_GAME
         val p1 = PlayerOrder.current
         val strat = new PlaySafe
-        Menu.setPlayerStrategy(p1,strat)
+        Menu.setPlayerStrategy(p1.name,strat)
         Menu.advancePlayerOrder
         
         val p2 = PlayerOrder.current
         val strat2 = new TwoRolls
-        Menu.setPlayerStrategy(p2,strat2)
+        Menu.setPlayerStrategy(p2.name,strat2)
         Menu.advancePlayerOrder
         
         val p3 = PlayerOrder.current
         val strat3 = new AtLeast500
-        Menu.setPlayerStrategy(p3,strat3)
+        Menu.setPlayerStrategy(p3.name,strat3)
         Menu.advancePlayerOrder
         
         val p4 = PlayerOrder.current
         val strat4 = new AllOrNothing
-        Menu.setPlayerStrategy(p4,strat4)
+        Menu.setPlayerStrategy(p4.name,strat4)
         Menu.advancePlayerOrder
         
         val expectedResult1 =
