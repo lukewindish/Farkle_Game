@@ -53,7 +53,7 @@ object Menu {
     var diceLeft = 6
 
     //first roll
-    Board.testRoll
+    Board.roll(6)
     val firstRoll = Board.calculateScore(diceLeft)
     points += firstRoll._1
     diceLeft = diceLeft - firstRoll._2
@@ -70,7 +70,7 @@ object Menu {
     var keepRolling = playerStrategy.rollAgain(points,diceLeft)
 
     while (keepRolling && diceLeft > 0) {
-      Board.testRoll
+      Board.roll(diceLeft)
       var roll = Board.calculateScore(diceLeft)
       points += roll._1
       

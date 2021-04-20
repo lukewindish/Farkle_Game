@@ -16,17 +16,22 @@ class Die {
    * 
    */
   def roll: Int = {
-    //value = 1 + r.nextInt(5)
-    if (current_roll == 0) {
-      current_roll = 1
+    if (Board.getRandomValue) {
+      value = 1 + r.nextInt(5)
       return value
     }
     else {
-      value += 1
-      if (value == 7) {
-        value = 1
+      if (current_roll == 0) {
+        current_roll = 1
+        return value
       }
-      return value
+      else {
+        value += 1
+        if (value == 7) {
+          value = 1
+        }
+        return value
+      }
     }
   }
   
