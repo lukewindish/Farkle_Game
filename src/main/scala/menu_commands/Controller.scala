@@ -56,8 +56,8 @@ class Controller(view: View, model: Model) {
     model.setPlayerStrat(player, strategy)
   }
   
-  def setRandomnessClick(mode: String) {
-    model.setRandomness(mode)
+  def toggleRandom(mode: String) {
+    model.toggleRandom(mode)
   }
 
   def exit = Action("Exit") {

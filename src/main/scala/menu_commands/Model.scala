@@ -53,8 +53,9 @@ class Model {
     }
   }
   
-  def setRandomness(mode: String) = {
-    Board.setRandomness(mode)
+  def toggleRandom(mode: String) = {
+    if (mode == "On") Board.toggleRandom(true)
+    else Board.toggleRandom(false)
   }
  
   

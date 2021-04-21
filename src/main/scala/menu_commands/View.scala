@@ -106,7 +106,7 @@ class View extends MainFrame {
       reactions += {
         case SelectionChanged(`randomness`) => {
           val rand = randomness.selection.item
-          controller.setRandomnessClick(rand)
+          controller.toggleRandom(rand)
         }
         case SelectionChanged(`strategyPullDown1`) => {
           val p1Strat = strategyPullDown1.selection.item

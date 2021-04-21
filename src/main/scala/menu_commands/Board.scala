@@ -1,14 +1,31 @@
 package menu_commands
 
-/** Board displays player's dice and scores
- * 
- */
+/** Board displays player's dice and scores */
 object Board {
-   var random = "Off"
    var dice = Array.ofDim[Die](6)
    for (i <- 0 until 6) dice(i) = new Die
+   
+   // boolean to toggle for randomness
+   var random = false
+   
+   /** Function changes random value for testing 
+    *  @return New value for random
+    *  */
+   def toggleRandom(mode: Boolean): Boolean = {
+     if (mode == false) random = false
+     else if (mode == true) random = true
+     return random
+   }
+   
+   
+   /** Function allows other files to see what random value is
+    *  @return Boolean value of random var
+    */
+   def getRandomValue: Boolean = {
+     random
+   }
 
-   /** Function resets the die to initialized version of the game @*/
+   /** Function resets the die to initialized version of the game */
    def resetDie : Unit = {
      for (i <- 0 until 6) dice(i) = new Die
    }
@@ -17,19 +34,13 @@ object Board {
     *  
     *  @param numDie Number of dice to roll
     */
-   protected def roll(numDie: Int): Unit = {
-     for (i <- 0 until numDie) dice(i).roll
+   def roll(numDie: Int): Unit = {
+     if (random)
+       for (i <- 0 until numDie) dice(i).roll
+     else
+       for (i <- 0 until 3) dice(i).roll
    }
-   def testRoll: Unit = {
-     for (i <- 0 until 3) dice(i).roll
-   }
-   def setRandomness(mode: String): Unit = {
-     random = mode
-   }
-   def checkRandomness: String = {
-     random
-   }
-   
+
    
    /** Funciton takes a number of dice and totals up the score that arrangement of dice makes
     *  
