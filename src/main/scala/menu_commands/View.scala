@@ -1,6 +1,7 @@
 package menu_commands
 
 import scala.swing._
+import swing.Swing._
 import event._
 import java.awt.Color
 import BorderPanel.Position._
@@ -34,9 +35,15 @@ class View extends MainFrame {
       this.maximumSize = new Dimension(100,20)
     }
     
-    object northArea extends TextArea {
-      this.background = Color.LIGHT_GRAY
+    object playerText extends TextArea {
       this.text = ""
+    }
+    
+    
+    object northArea extends FlowPanel(FlowPanel.Alignment.Left)() {
+      contents += showPlayerOrderButton
+      contents += advancePlayerOrderButton
+      contents += playerText
     }
     
     object centralArea extends TextArea {
@@ -44,29 +51,32 @@ class View extends MainFrame {
     }
     
     object westArea extends BoxPanel(Orientation.Vertical) {
-      contents += initializeGameButton
+      contents += Swing.VStrut(50)
       contents += new Label {
         text = "Randomness"
       }
       contents += randomness
+      contents += Swing.VStrut(25)
+      contents += initializeGameButton
+      contents += Swing.VStrut(25)
       contents += doMoveButton
+      contents += Swing.VStrut(10)
       contents += doTurnButton
+      contents += Swing.VStrut(10)
       contents += doGameButton
+      contents += Swing.VStrut(25)
       contents += checkForWinnerButton
-      contents += new Label("Player 1 Strategy")
+      contents += Swing.VStrut(50)
+      contents += new Label("Player_1 Strategy")
       contents += strategyPullDown1
-      contents += new Label("Player 2 Strategy")
+      contents += new Label("Player_2 Strategy")
       contents += strategyPullDown2
-      contents += new Label("Player 3 Strategy")
+      contents += new Label("Player_3 Strategy")
       contents += strategyPullDown3
-      contents += new Label("Player 4 Strategy")
+      contents += new Label("Player_4 Strategy")
       contents += strategyPullDown4
     }
     
-    object southArea extends FlowPanel {
-      contents += advancePlayerOrderButton
-      contents += showPlayerOrderButton
-    }
     
     
     
@@ -74,7 +84,6 @@ class View extends MainFrame {
       add(northArea, BorderPanel.Position.North)
       add(centralArea, BorderPanel.Position.Center)
       add(westArea, BorderPanel.Position.West)
-      add(southArea, BorderPanel.Position.South)
     }
     
     
@@ -130,7 +139,7 @@ class View extends MainFrame {
       
   
   
-      size = new Dimension(600, 750)
+      size = new Dimension(650, 750)
       visible = true
     }
 
