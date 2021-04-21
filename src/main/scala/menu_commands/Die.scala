@@ -5,10 +5,10 @@ package menu_commands
  * @constructor Creates a six-sided die
  */
 class Die {
-
   var value = 1
   var current_roll = 0
   val r = scala.util.Random
+  
   
   
   /**Rolls itself to give it a random number between 1 and 6
@@ -16,7 +16,9 @@ class Die {
    * 
    */
   def roll: Int = {
-    //value = 1 + r.nextInt(5)
+    if (Board.checkRandomness == "On") {
+      value = 1 + r.nextInt(5)
+    }
     if (current_roll == 0) {
       current_roll = 1
       return value

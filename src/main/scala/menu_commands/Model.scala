@@ -3,6 +3,7 @@ package menu_commands
 class Model {
   val message = Board.show
   
+  
   def getMessage = message
   
   def showGameArea = {
@@ -36,4 +37,26 @@ class Model {
   def showPlayerOrder = {
     Menu.showPlayerOrder
   }
+  
+  def setPlayerStrat(player: String, strategy: String) = {
+    if (strategy == "Play Safe") {
+      Menu.setPlayerStrategy(player, new PlaySafe)
+    }
+    else if (strategy == "Two Rolls") {
+      Menu.setPlayerStrategy(player, new TwoRolls)
+    }
+    else if (strategy == "At Least 500") {
+      Menu.setPlayerStrategy(player, new AtLeast500)
+    }
+    else if (strategy == "All or Nothing") {
+      Menu.setPlayerStrategy(player, new AllOrNothing)
+    }
+  }
+  
+  def setRandomness(mode: String) = {
+    Board.setRandomness(mode)
+  }
+ 
+  
+  
 }

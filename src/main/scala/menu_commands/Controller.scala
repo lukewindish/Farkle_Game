@@ -51,6 +51,14 @@ class Controller(view: View, model: Model) {
   def showPlayerOrderClick = Action("Show Player Order") {
     view.northArea.text = "Player Order: " + model.showPlayerOrder
   }
+  
+  def setPlayerStratClick(player: String, strategy: String) {
+    model.setPlayerStrat(player, strategy)
+  }
+  
+  def setRandomnessClick(mode: String) {
+    model.setRandomness(mode)
+  }
 
   def exit = Action("Exit") {
     sys.exit(0)

@@ -663,7 +663,7 @@ class Menu_Test extends FunSpec with Matchers {
       //Show Strategies
       it ("Can show player availalbe strategies") {
         var expectedResult = "PlaySafe: One roll and you are done\n"
-        expectedResult += "TwoRolls: Unless you score will all dice on the first roll, you will roll one more time\n"
+        expectedResult += "TwoRolls: Unless you score with all dice on the first roll, you will roll one more time\n"
         expectedResult += "AtLeast500: Roll until you have 500 points for that turn\n"
         expectedResult += "AllOrNothing: Roll until all dice have scored\n"
         Menu.showStrategies should be (expectedResult)

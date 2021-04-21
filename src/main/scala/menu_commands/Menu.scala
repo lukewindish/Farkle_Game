@@ -128,7 +128,7 @@ object Menu {
    */
   def showStrategies: String = {
     var strategies = "PlaySafe: One roll and you are done\n"
-    strategies += "TwoRolls: Unless you score will all dice on the first roll, you will roll one more time\n"
+    strategies += "TwoRolls: Unless you score with all dice on the first roll, you will roll one more time\n"
     strategies += "AtLeast500: Roll until you have 500 points for that turn\n"
     strategies += "AllOrNothing: Roll until all dice have scored\n"
     strategies

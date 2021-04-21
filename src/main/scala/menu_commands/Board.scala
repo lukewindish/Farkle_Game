@@ -4,7 +4,7 @@ package menu_commands
  * 
  */
 object Board {
-  
+   var random = "Off"
    var dice = Array.ofDim[Die](6)
    for (i <- 0 until 6) dice(i) = new Die
 
@@ -22,6 +22,12 @@ object Board {
    }
    def testRoll: Unit = {
      for (i <- 0 until 3) dice(i).roll
+   }
+   def setRandomness(mode: String): Unit = {
+     random = mode
+   }
+   def checkRandomness: String = {
+     random
    }
    
    
