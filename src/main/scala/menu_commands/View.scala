@@ -17,6 +17,7 @@ class View extends MainFrame {
     object doMoveButton extends Button
     object doTurnButton extends Button
     object doGameButton extends Button
+    object showStrategiesButton extends Button
     object checkForWinnerButton extends Button
     object advancePlayerOrderButton extends Button
     object showPlayerOrderButton extends Button
@@ -52,11 +53,13 @@ class View extends MainFrame {
     
     object centralArea extends TextArea {
       border = new javax.swing.border.LineBorder(Color.BLACK, 1, true)
+      lineWrap = true
+      wordWrap = true
       this.text = ""
       font = new Font("Ariel", java.awt.Font.BOLD, 12)
     }
     
-    object westArea extends GridPanel(32, 1) {
+    object westArea extends GridPanel(34, 1) {
       preferredSize = new Dimension(170,200)
       contents += new Label("Randomness") {
         font = new Font("Ariel", java.awt.Font.BOLD, 18)
@@ -80,6 +83,8 @@ class View extends MainFrame {
       contents += doTurnButton
       contents += Swing.VStrut(20)
       contents += doGameButton
+      contents += Swing.VStrut(20)
+      contents += showStrategiesButton
       contents += Swing.VStrut(20)
       contents += checkForWinnerButton
       contents += Swing.VStrut(5)
@@ -134,6 +139,7 @@ class View extends MainFrame {
       doMoveButton.action  = controller.doMoveClick
       doTurnButton.action  = controller.doTurnClick
       doGameButton.action  = controller.doGameClick
+      showStrategiesButton.action = controller.showStrategiesClick
       checkForWinnerButton.action  = controller.checkForWinnerClick
       advancePlayerOrderButton.action  = controller.advancePlayerOrderClick
       showPlayerOrderButton.action = controller.showPlayerOrderClick

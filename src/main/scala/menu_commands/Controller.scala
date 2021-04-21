@@ -34,6 +34,10 @@ class Controller(view: View, model: Model) {
     view.playerText.text = "Player Order: " + model.showPlayerOrder
   }
   
+  def showStrategiesClick = Action("Show Strategies") {
+    view.centralArea.text = model.showStrategies
+  }
+  
   def checkForWinnerClick = Action("Check For Winner") {
     view.centralArea.text = model.showGameArea
     if (!(model.checkForWinner)) {

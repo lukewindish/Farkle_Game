@@ -38,6 +38,10 @@ class Model {
     Menu.showPlayerOrder
   }
   
+  def showStrategies = {
+    Menu.showStrategies
+  }
+  
   def setPlayerStrat(player: String, strategy: String) = {
     if (strategy == "Play Safe") {
       Menu.setPlayerStrategy(player, new PlaySafe)
