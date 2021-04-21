@@ -4,7 +4,10 @@ import scala.swing._
 import swing.Swing._
 import event._
 import java.awt.Color
+import java.awt.Font
 import BorderPanel.Position._
+import javax.swing.border.Border
+import java.awt.ComponentOrientation
 
 class View extends MainFrame {
 
@@ -19,7 +22,7 @@ class View extends MainFrame {
     object showPlayerOrderButton extends Button
     
     object randomness extends ComboBox(List("Off" ,"On")) {
-      this.maximumSize = new Dimension(50,20)
+      this.maximumSize = new Dimension(20,20)
     }
         
     object strategyPullDown1 extends ComboBox(List("", "Play Safe", "Two Rolls", "At Least 500", "All or Nothing")) {
@@ -34,46 +37,74 @@ class View extends MainFrame {
     object strategyPullDown4 extends ComboBox(List("", "Play Safe", "Two Rolls", "At Least 500", "All or Nothing")) {
       this.maximumSize = new Dimension(100,20)
     }
+
     
     object playerText extends TextArea {
       this.text = ""
+      font = new Font("Ariel", java.awt.Font.BOLD, 12)
     }
     
     
-    object northArea extends FlowPanel(FlowPanel.Alignment.Left)() {
-      contents += showPlayerOrderButton
-      contents += advancePlayerOrderButton
+    object northArea extends FlowPanel(FlowPanel.Alignment.Right)() {
       contents += playerText
+      contents += advancePlayerOrderButton
     }
     
     object centralArea extends TextArea {
+      border = new javax.swing.border.LineBorder(Color.BLACK, 1, true)
       this.text = ""
+      font = new Font("Ariel", java.awt.Font.BOLD, 12)
     }
     
-    object westArea extends BoxPanel(Orientation.Vertical) {
-      contents += Swing.VStrut(50)
-      contents += new Label {
-        text = "Randomness"
+    object westArea extends GridPanel(32, 1) {
+      preferredSize = new Dimension(170,200)
+      contents += new Label("Randomness") {
+        font = new Font("Ariel", java.awt.Font.BOLD, 18)
       }
+      contents += Swing.VStrut(5)
       contents += randomness
-      contents += Swing.VStrut(25)
+      contents += Swing.VStrut(5)
+      contents += new Label("_______________________")   
+      
+      contents += Swing.VStrut(5)
+      contents += new Label("Options") {
+        font = new Font("Ariel", java.awt.Font.BOLD, 18)
+      }
+      contents += Swing.VStrut(5)
       contents += initializeGameButton
-      contents += Swing.VStrut(25)
+      contents += Swing.VStrut(20)
+      contents += showPlayerOrderButton
+      contents += Swing.VStrut(20)
       contents += doMoveButton
-      contents += Swing.VStrut(10)
+      contents += Swing.VStrut(20)
       contents += doTurnButton
-      contents += Swing.VStrut(10)
+      contents += Swing.VStrut(20)
       contents += doGameButton
-      contents += Swing.VStrut(25)
+      contents += Swing.VStrut(20)
       contents += checkForWinnerButton
-      contents += Swing.VStrut(50)
-      contents += new Label("Player_1 Strategy")
+      contents += Swing.VStrut(5)
+      
+      contents += new Label("_______________________")
+      contents += Swing.VStrut(5)
+      contents += new Label("Strategies") {
+        font = new Font("Ariel", java.awt.Font.BOLD, 18)
+      }
+      contents += Swing.VStrut(10)
+      contents += new Label("Player_1") {
+        font = new Font("Ariel", java.awt.Font.ITALIC, 14)
+      }
       contents += strategyPullDown1
-      contents += new Label("Player_2 Strategy")
+      contents += new Label("Player_2") {
+        font = new Font("Ariel", java.awt.Font.ITALIC, 14)
+      }
       contents += strategyPullDown2
-      contents += new Label("Player_3 Strategy")
+      contents += new Label("Player_3") {
+        font = new Font("Ariel", java.awt.Font.ITALIC, 14)
+      }
       contents += strategyPullDown3
-      contents += new Label("Player_4 Strategy")
+      contents += new Label("Player_4") {
+        font = new Font("Ariel", java.awt.Font.ITALIC, 14)
+      }
       contents += strategyPullDown4
     }
     
@@ -84,6 +115,7 @@ class View extends MainFrame {
       add(northArea, BorderPanel.Position.North)
       add(centralArea, BorderPanel.Position.Center)
       add(westArea, BorderPanel.Position.West)
+      
     }
     
     
@@ -94,7 +126,7 @@ class View extends MainFrame {
      */
     def init(controller: Controller) {
       _controller = Some(controller)
-      title = "Farkle GUI"
+      title = "Farkle"
       contents = borderPanel
       centerOnScreen
       
