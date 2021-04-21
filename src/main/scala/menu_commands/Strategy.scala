@@ -13,7 +13,7 @@ class Strategy {
    *  @return Boolean for whether or not player should roll again 
    *  
    */
-  def rollAgain(pointsSoFar:Int,diceLeft:Int): Boolean = {
+  def rollAgain: Boolean = {
     false
   }
   /** Function to update scoreSoFar for strategy logic */
@@ -22,6 +22,6 @@ class Strategy {
   }
   /** Function to update rollsSoFar for strategy logic */
   def updateRolls(i:Int): Unit = {
-    rollsSoFar += i
+    rollsSoFar = i
   }
 }

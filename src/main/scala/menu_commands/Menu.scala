@@ -57,37 +57,38 @@ object Menu {
     val firstRoll = Board.calculateScore(diceLeft)
     points += firstRoll._1
     diceLeft = diceLeft - firstRoll._2
+    rolls += 1
     
     // updating scoreSoFar and rollsSoFar for strategy
     // to make decision to keep rolling
     playerStrategy.updateScore(points);
-    playerStrategy.updateRolls(diceLeft);
+    playerStrategy.updateRolls(rolls);
     
     // player cannot have option to roll again if their first roll
     // yielded zero points
     if (points == 0) diceLeft = 0;
 
-    var keepRolling = playerStrategy.rollAgain(points,diceLeft)
+    var keepRolling = playerStrategy.rollAgain
 
     while (keepRolling && diceLeft > 0) {
       Board.roll(diceLeft)
       var roll = Board.calculateScore(diceLeft)
       points += roll._1
+      rolls += 1
       
       // check if new roll scored more points, if not all points
       // player made are gone and cannot roll again
       if (roll._1 == 0) {
-        points = 0
+        points = 0 
         diceLeft = 0
       }
       
       diceLeft = diceLeft - roll._2
       playerStrategy.updateScore(points);
-      playerStrategy.updateRolls(diceLeft);
-      keepRolling = playerStrategy.rollAgain(points,diceLeft)
+      playerStrategy.updateRolls(rolls);
+      keepRolling = playerStrategy.rollAgain
     }
-
-    playerUp.addScore(points)
+    if (Menu.CHECK_FOR_WINNER == false) playerUp.addScore(points)
     Menu.advancePlayerOrder
   }
   

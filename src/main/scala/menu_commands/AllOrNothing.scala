@@ -13,5 +13,5 @@ class AllOrNothing extends Strategy {
    *  @return Boolean for whether or not player should roll again 
    *  
    */
-  override def rollAgain(pointsSoFar:Int,diceLeft:Int): Boolean = {true}
+  override def rollAgain: Boolean = {true}
 }

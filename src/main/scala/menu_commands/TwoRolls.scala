@@ -13,7 +13,7 @@ class TwoRolls extends Strategy {
    *  @return Boolean for whether or not player should roll again 
    *  
    */
-  override def rollAgain(pointsSoFar:Int,diceLeft:Int): Boolean = {
+  override def rollAgain: Boolean = {
     if (rollsSoFar < 2) true
     else false
   }

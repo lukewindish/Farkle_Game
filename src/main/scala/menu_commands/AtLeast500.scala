@@ -13,7 +13,7 @@ class AtLeast500 extends Strategy {
    *  @return Boolean for whether or not player should roll again 
    *  
    */
-  override def rollAgain(pointsSoFar:Int,diceLeft:Int): Boolean = {
+  override def rollAgain: Boolean = {
     if (scoreSoFar >= 500) false
     else true
   }
