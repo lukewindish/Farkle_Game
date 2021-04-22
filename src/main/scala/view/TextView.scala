@@ -200,7 +200,7 @@ class TextView extends MainFrame with View {
       Dialog.showMessage(this, result, title="Winner?")
     }
     
-    def showStrategiies(result: String) {
+    def showStrategies(result: String) {
       Dialog.showMessage(this, result, title="Strategies")
     }
     
