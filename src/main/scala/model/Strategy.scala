@@ -1,4 +1,4 @@
-package menu_commands
+package model
 
 /** Defines a strategy for a player to use while playing the game */
 class Strategy {

@@ -1,4 +1,4 @@
-package menu_commands
+package model
 
 
 /** A queue that represents the order of players in the game */

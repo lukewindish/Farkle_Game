@@ -1,4 +1,4 @@
-package menu_commands
+package model
 
 /** Board displays player's dice and scores */
 object Board {

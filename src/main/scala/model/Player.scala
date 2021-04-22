@@ -1,4 +1,4 @@
-package menu_commands
+package model
 
 
 /**A Player within the game application 

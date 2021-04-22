@@ -1,4 +1,4 @@
-package menu_commands
+package model
 
 
 /** A six-sided die that can be rolled by players

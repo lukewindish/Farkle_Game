@@ -1,4 +1,8 @@
-package menu_commands
+package model
+
+class Model {
+  val menu = Menu
+}
 
 
 /**Has main functions to run the game */
@@ -7,6 +11,14 @@ object Menu {
   //** Returns a string representing the game board */
   def showGameArea : String = {
     Board.show
+  }
+  
+  
+  def toggleRandom(mode: String): Boolean = {
+    if (mode == "On") {
+      Board.toggleRandom(true)
+    }
+    else Board.toggleRandom(false)
   }
   
   

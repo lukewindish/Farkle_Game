@@ -1,4 +1,4 @@
-package menu_commands
+package model
 
 /** Strategy that can be assigned to a player. AtLeast500 rolls until
  *  the player has earned 500 points during that turn*/

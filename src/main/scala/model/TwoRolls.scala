@@ -1,4 +1,4 @@
-package menu_commands
+package model
 
 /** Strategy that can be assigned to a player. TwoRolls rolls twice
  *  bearing that the first roll produced points. */

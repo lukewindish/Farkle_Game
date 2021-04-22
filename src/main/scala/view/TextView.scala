@@ -1,5 +1,6 @@
-package menu_commands
+package view
 
+import controller._
 import scala.swing._
 import swing.Swing._
 import event._
@@ -8,24 +9,35 @@ import java.awt.Font
 import BorderPanel.Position._
 import javax.swing.border.Border
 import java.awt.ComponentOrientation
+import java.awt.image.BufferedImage
 
-class View extends MainFrame {
-
-    var _controller : Option[Controller] = None
+class TextView extends MainFrame with View {
+  
+    // Player Order Panel
+    object advancePlayerOrderButton extends Button
+    object playerText extends TextArea {
+      this.text = ""
+      font = new Font("Ariel", java.awt.Font.BOLD, 12)
+    }
+    object northArea extends FlowPanel(FlowPanel.Alignment.Right)() {
+      contents += playerText
+      contents += advancePlayerOrderButton
+    }
     
+    
+    
+    // Game control buttons Panel
+
+    object randomness extends ComboBox(List("Off" ,"On")) {
+      this.maximumSize = new Dimension(20,20)
+    }
     object initializeGameButton extends Button
     object doMoveButton extends Button
     object doTurnButton extends Button
     object doGameButton extends Button
     object showStrategiesButton extends Button
     object checkForWinnerButton extends Button
-    object advancePlayerOrderButton extends Button
-    object showPlayerOrderButton extends Button
     
-    object randomness extends ComboBox(List("Off" ,"On")) {
-      this.maximumSize = new Dimension(20,20)
-    }
-        
     object strategyPullDown1 extends ComboBox(List("", "Play Safe", "Two Rolls", "At Least 500", "All or Nothing")) {
       this.maximumSize = new Dimension(100,20)
     }
@@ -38,28 +50,7 @@ class View extends MainFrame {
     object strategyPullDown4 extends ComboBox(List("", "Play Safe", "Two Rolls", "At Least 500", "All or Nothing")) {
       this.maximumSize = new Dimension(100,20)
     }
-
-    
-    object playerText extends TextArea {
-      this.text = ""
-      font = new Font("Ariel", java.awt.Font.BOLD, 12)
-    }
-    
-    
-    object northArea extends FlowPanel(FlowPanel.Alignment.Right)() {
-      contents += playerText
-      contents += advancePlayerOrderButton
-    }
-    
-    object centralArea extends TextArea {
-      border = new javax.swing.border.LineBorder(Color.BLACK, 1, true)
-      lineWrap = true
-      wordWrap = true
-      this.text = ""
-      font = new Font("Ariel", java.awt.Font.BOLD, 12)
-    }
-    
-    object westArea extends GridPanel(34, 1) {
+    object westArea extends GridPanel(32, 1) {
       preferredSize = new Dimension(170,200)
       contents += new Label("Randomness") {
         font = new Font("Ariel", java.awt.Font.BOLD, 18)
@@ -75,8 +66,6 @@ class View extends MainFrame {
       }
       contents += Swing.VStrut(5)
       contents += initializeGameButton
-      contents += Swing.VStrut(20)
-      contents += showPlayerOrderButton
       contents += Swing.VStrut(20)
       contents += doMoveButton
       contents += Swing.VStrut(20)
@@ -113,36 +102,58 @@ class View extends MainFrame {
       contents += strategyPullDown4
     }
     
+
+    
+    // Game Display Area
+    
+    object gameText extends TextArea {
+      border = new javax.swing.border.LineBorder(Color.BLACK, 2, true)
+      background = Color.WHITE
+      foreground = Color.BLACK
+      lineWrap = true
+      wordWrap = true
+      this.text = ""
+      font = new Font("Ariel", java.awt.Font.BOLD, 12)
+    }
+    object gameArea extends ScrollPane(gameText)
+
     
     
+    // Position Panels
     
     object borderPanel extends BorderPanel {
       add(northArea, BorderPanel.Position.North)
-      add(centralArea, BorderPanel.Position.Center)
+      add(gameArea, BorderPanel.Position.Center)
       add(westArea, BorderPanel.Position.West)
-      
     }
     
-    
   
+    
+    // Additional items
+    
+      title = "Farkle"
+      contents = borderPanel
+      centerOnScreen
+      size = new Dimension(650, 750)
+    
     /**
      * View.init
      * @param controller
      */
-    def init(controller: Controller) {
-      _controller = Some(controller)
-      title = "Farkle"
-      contents = borderPanel
-      centerOnScreen
+    override def init(controller: Controller) {
+      super.init(controller)
       
-      initializeGameButton.action  = controller.initializeGameClick
-      doMoveButton.action  = controller.doMoveClick
-      doTurnButton.action  = controller.doTurnClick
-      doGameButton.action  = controller.doGameClick
-      showStrategiesButton.action = controller.showStrategiesClick
-      checkForWinnerButton.action  = controller.checkForWinnerClick
-      advancePlayerOrderButton.action  = controller.advancePlayerOrderClick
-      showPlayerOrderButton.action = controller.showPlayerOrderClick
+      update_PlayerOrder
+      update_GameArea
+      
+
+      initializeGameButton.action  = controller.initializeGame
+      doMoveButton.action  = controller.doMove
+      doTurnButton.action  = controller.doTurn
+      doGameButton.action  = controller.doGame
+      showStrategiesButton.action = controller.showStrategies
+      checkForWinnerButton.action  = controller.checkForWinner
+      advancePlayerOrderButton.action  = controller.advancePlayerOrder
       
       listenTo(randomness.selection)
       listenTo(strategyPullDown1.selection)
@@ -153,32 +164,44 @@ class View extends MainFrame {
       reactions += {
         case SelectionChanged(`randomness`) => {
           val rand = randomness.selection.item
-          controller.toggleRandom(rand)
+          controller.toggleRandom(rand)          
         }
         case SelectionChanged(`strategyPullDown1`) => {
           val p1Strat = strategyPullDown1.selection.item
-          controller.setPlayerStratClick("Player_1", p1Strat)
+          controller.setPlayerStrat("Player_1", p1Strat)
         }
         case SelectionChanged(`strategyPullDown2`) => {
           val p2Strat = strategyPullDown2.selection.item
-          controller.setPlayerStratClick("Player_2", p2Strat)
+          controller.setPlayerStrat("Player_2", p2Strat)
         }
         case SelectionChanged(`strategyPullDown3`) => {
           val p3Strat = strategyPullDown3.selection.item
-          controller.setPlayerStratClick("Player_3", p3Strat)
+          controller.setPlayerStrat("Player_3", p3Strat)
         }
         case SelectionChanged(`strategyPullDown4`) => {
           val p4Strat = strategyPullDown4.selection.item
-          controller.setPlayerStratClick("Player_4", p4Strat)
+          controller.setPlayerStrat("Player_4", p4Strat)
         }
       }
       
-  
       
-  
-  
-      size = new Dimension(650, 750)
       visible = true
     }
-
+      
+    def update_PlayerOrder {
+      playerText.text = controller.get.showPlayerOrder
+    }
+    
+    def update_GameArea {
+      gameText.text = controller.get.showGameArea
+    }
+    
+    def showWinner(result: String) {
+      Dialog.showMessage(this, result, title="Winner?")
+    }
+    
+    def showStrategiies(result: String) {
+      Dialog.showMessage(this, result, title="Strategies")
+    }
+    
 }

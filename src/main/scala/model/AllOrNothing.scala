@@ -1,4 +1,4 @@
-package menu_commands
+package model
 
 /** Strategy that can be assigned to a player. AllOrNothing always rolls again
  *  until all dice have yielded points*/

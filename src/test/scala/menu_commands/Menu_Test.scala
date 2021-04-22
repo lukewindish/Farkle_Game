@@ -1,5 +1,6 @@
-package menu_commands
+package model
 
+import model._
 import org.scalatest.FunSpec
 import org.scalatest.FunSpec
 import org.scalatest.Matchers
